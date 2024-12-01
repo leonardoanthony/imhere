@@ -3,20 +3,17 @@ import { styles } from "./style";
 
 type Props = {
     name: string;
+    onRemove: () => void;
 }
 
-export function Participant({name}: Props){
-
-    function handleRemoveParticipant(){
-        alert('oi');
-    }
+export function Participant({name, onRemove}: Props){
 
     return (
         <View style={styles.container}>
 
             <Text style={styles.text}>{name}</Text>
 
-            <TouchableOpacity onPress={handleRemoveParticipant} style={styles.button}>
+            <TouchableOpacity onPress={onRemove} style={styles.button}>
 
                 <Text style={styles.textButton}>-</Text>
 
