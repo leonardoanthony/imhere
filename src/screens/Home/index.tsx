@@ -8,16 +8,12 @@ export function Home() {
     const [participants, setParticipants] = useState<string[]>([]);
     const [participantName, setParticipantName] = useState('')
 
-    // const participants = ['Andreia'];
-
     function handleParticipantAdd(){
       if(participants.includes(participantName)){
         return Alert.alert('Participante existe', 'Já participante na lista com este nome');
       }
-      console.log(`Você clicou em adicionar o participante`)  
       setParticipants(prev => [...prev, participantName])
       setParticipantName('');
-      console.log(participants);
     }
 
     function handleParticipantRemove(name: string){
@@ -25,14 +21,17 @@ export function Home() {
       Alert.alert("Remover", `Deseja remover o participante ${name}?`, [
         {
           text: 'Sim',
-          onPress: () => Alert.alert("Deletado!"),
+          onPress: () => {
+            setParticipants(prev => prev.filter(participant => participant !== name))
+            Alert.alert("Deletado!")
+
+          },
         },
         {
           text: 'Não',
           style: 'cancel'
         },
       ]);
-      console.log(`Você clicou em remover o participante ${name}`)  
     }
 
 
